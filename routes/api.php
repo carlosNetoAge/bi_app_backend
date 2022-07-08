@@ -21,7 +21,9 @@ Route::post('/login', [\App\Http\Controllers\AuthenticController::class, 'login'
 
 Route::middleware(\App\Http\Middleware\VerifyToken::class)->prefix('')->group(function () {
 
-    Route::resource('menu_items', \App\Http\Controllers\MenuItemsController::class);
+    Route::resource('sub_menus', \App\Http\Controllers\MenuSubItemsController::class);
+
 
 });
-Route::resource('sub_menus', \App\Http\Controllers\MenuSubItemsController::class);
+
+Route::resource('menu_items', \App\Http\Controllers\MenuItemsController::class);

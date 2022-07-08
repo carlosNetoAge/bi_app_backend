@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\MenuItem;
+use App\Models\PermissionMenu;
 use Illuminate\Http\Request;
 
 class MenuItemsController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $menu_items = MenuItem::all();
 
-        return response($menu_items);
+        $userId = $request->header('user_id');
+
+        $permissions = PermissionMenu::where('user_id', $userId)->select('id', 'user_id')->with('menuItems')->get();
+
+        return response($permissions);
     }
 
 
