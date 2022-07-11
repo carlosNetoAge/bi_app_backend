@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -83,6 +84,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('usuarios')->insert([
+            'ativo' => 1,
             'nome' => 'Carlos',
             'sobrenome' => 'Neto',
             'email' => 'a@a',
@@ -90,5 +92,6 @@ class DatabaseSeeder extends Seeder
             'privilegio' => 1
         ]);
 
+        User::factory(100)->create();
     }
 }

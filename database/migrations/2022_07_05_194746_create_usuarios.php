@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('ativo')->default(1);
             $table->string('nome', 55);
             $table->string('sobrenome', 255);
             $table->string('email', 255);
