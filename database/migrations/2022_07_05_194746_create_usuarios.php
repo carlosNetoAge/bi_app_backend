@@ -26,7 +26,7 @@ return new class extends Migration
 
 
             // Relacionamento
-            $table->foreign('setor_id')->references('id')->on('setores');
+            $table->foreign('setor_id')->references('id')->on('setores')->onDelete('cascade');
         });
     }
 

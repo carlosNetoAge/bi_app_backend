@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('menu_itens_permissoes', function (Blueprint $table) {
+        Schema::create('menu_subitens', function (Blueprint $table) {
             $table->id();
+            $table->string('subitem', 255);
+            $table->string('iframe', 1000);
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
 
+            // Relacionamentos
+
             $table->foreign('item_id')->references('id')->on('menu_itens')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('usuarios')->onDelete('cascade');
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_permissoes');
+        Schema::dropIfExists('menu_subitens');
     }
 };
