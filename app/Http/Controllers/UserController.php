@@ -30,7 +30,9 @@ class UserController extends Controller
 
     public function show($id)
     {
+        $user = User::where('id', $id)->select('id','ativo', 'nome', 'sobrenome', 'email', 'setor_id', 'privilegio', 'created_at')->first();
 
+        return response($user);
     }
 
 
