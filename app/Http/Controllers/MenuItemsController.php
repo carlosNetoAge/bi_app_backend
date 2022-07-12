@@ -12,11 +12,9 @@ class MenuItemsController extends Controller
     public function index(Request $request)
     {
 
-        $userId = $request->header('user_id');
+        $menus = MenuItem::select('id', 'item')->get();
 
-        $permissions = PermissionMenu::where('user_id', $userId)->select('id', 'user_id')->with('menuItems')->get();
-
-        return response($permissions);
+        return response($menus);
     }
 
 
@@ -35,7 +33,9 @@ class MenuItemsController extends Controller
 
     public function show($id)
     {
-        //
+        $menu = MenuItem::select('id', 'item')->first();
+
+        return response($menu);
     }
 
     public function edit($id)

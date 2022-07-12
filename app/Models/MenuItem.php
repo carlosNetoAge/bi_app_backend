@@ -13,4 +13,10 @@ class MenuItem extends Model
 
     protected $table = 'menu_itens';
     protected $fillable = ['item', 'iframe'];
+
+
+    public function menu_allowed()
+    {
+        return $this->hasMany(MenuItemPermission::class, 'item_id');
+    }
 }

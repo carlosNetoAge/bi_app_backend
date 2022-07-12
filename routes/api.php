@@ -29,7 +29,10 @@ Route::resource('menu_items', \App\Http\Controllers\MenuItemsController::class);
 Route::resource('sub_menus', \App\Http\Controllers\MenuSubItemsController::class);
 Route::get('allowed/list_menu', [\App\Http\Controllers\MenuAllowedController::class, 'list_menu']);
 Route::get('allowed/list_submenu', [\App\Http\Controllers\MenuAllowedController::class, 'list_subMenu']);
+Route::get('allowed/menu_general', [\App\Http\Controllers\MenuAllowedController::class, 'menu_general']);
 Route::resource('users', \App\Http\Controllers\UserController::class);
 Route::put('users/restore/{id}', [\App\Http\Controllers\UserController::class, 'restore']);
 Route::get('/teste', [\App\Http\Controllers\TestController::class, 'index']);
 Route::get('/info-geral', [\App\Http\Controllers\InfoGeneralController::class, 'users_counts']);
+
+Route::resource('menu-permissions', \App\Http\Controllers\MenuItemPermissionsController::class);

@@ -27,9 +27,8 @@ class MenuSubItemsController extends Controller
 
     public function show(Request $request, $id)
     {
-        $user_id = $request->header('user_id');
 
-        $subitems = PermissionMenu::where('item_id', $id)->where('user_id', $user_id)->with('subItems')->get();
+        $subitems = MenuSubItem::select('id', 'item_id', 'subitem')->where('item_id', $id)->get();
 
         return $subitems;
     }
