@@ -41,4 +41,17 @@ class MenuAllowedController extends Controller
         return response($menus);
 
     }
+
+    public function menu_submenu_general(Request $request)
+    {
+        $user_id = $request->header('user_id');
+        $item_id = $request->header('item_id');
+
+        $submenus = MenuSubItem::select('id', 'subitem', 'item_id')->where('item_id', $item_id)->with(['submenu_allowed' => function($q) use ($user_id, $item_id) {
+            $q->where('user_id', $user_id)->where('item_id', $item_id)->select('id', 'item_id', 'subitem_id', 'user_id');
+        }])->get();
+
+        return response()->json($submenus);
+
+    }
 }

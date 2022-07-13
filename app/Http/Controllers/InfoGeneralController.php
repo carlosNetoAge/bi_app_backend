@@ -11,7 +11,7 @@ class InfoGeneralController extends Controller
 {
     public function users_counts()
     {
-        $users = User::select('id', 'nome', 'sobrenome', 'email', 'created_at')->orderBy('id', 'desc')->limit(5)->get();
+        $users = User::select('id', 'nome', 'sobrenome', 'email', 'registrado_em')->orderBy('id', 'desc')->limit(5)->get();
         $users_count = User::all()->count();
 
         $menus_count = MenuItem::all()->count();

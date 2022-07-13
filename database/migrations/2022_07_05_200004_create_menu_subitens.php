@@ -23,7 +23,7 @@ return new class extends Migration
 
             // Relacionamentos
 
-            $table->foreign('item_id')->references('id')->on('menu_itens')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('menu_itens');
         });
     }
 

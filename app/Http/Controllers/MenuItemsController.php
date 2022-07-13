@@ -12,16 +12,22 @@ class MenuItemsController extends Controller
     public function index(Request $request)
     {
 
-        $menus = MenuItem::select('id', 'item')->get();
+        $menus = MenuItem::select('id', 'item', 'deleted_at')->withTrashed()->get();
 
         return response($menus);
     }
 
 
 
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $menu = MenuItem::withTrashed()->where('id', $request->header('item_id'))->restore();
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Dashboard habilitado com sucesso!'
+        ]);
+
     }
 
 
@@ -33,7 +39,7 @@ class MenuItemsController extends Controller
 
     public function show($id)
     {
-        $menu = MenuItem::select('id', 'item')->first();
+        $menu = MenuItem::select('id', 'item')->where('id', $id)->first();
 
         return response($menu);
     }
@@ -50,6 +56,13 @@ class MenuItemsController extends Controller
 
     public function destroy($id)
     {
-        //
+        $itemDeleted = MenuItem::where('id', $id)->first();
+
+        $itemDeleted->delete();
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Dashboard desabilitado com sucesso!'
+        ]);
     }
 }

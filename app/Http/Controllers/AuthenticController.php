@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -63,6 +64,7 @@ class AuthenticController extends Controller
                             'token' => $user->personal_token,
                             'user_id' => $user->id,
                             'email' => $user->email,
+                            'privilege' => $user->privilegio,
                             'msg' => 'Usuário autenticado com sucesso!'
                         ]);
                     } else {
@@ -86,19 +88,25 @@ class AuthenticController extends Controller
                         $username = $nomeSeparado[0].".".$nomeSeparado[1]."@agetelecom.com.br";
                     }
 
+                    $date = Carbon::parse(now());
+
+                    $date = $date->format("d/m/Y");
+
                     $user = User::create([
                                 'nome' => ucfirst($nomeSeparado[0]),
                                 'sobrenome' => ucfirst($nomeSeparado[1]),
                                 'email' => $username,
                                 'setor_id' => 1,
                                 'privilegio' => 0,
-                                'personal_token' => Hash::make(Str::random(40))
+                                'personal_token' => Hash::make(Str::random(40)),
+                                'registrado_em' => $date
                             ]);
 
                     return response()->json([
                         'token' => $user->personal_token,
                         'user_id' => $user->id,
                         'email' => $user->email,
+                        'privilege' => $user->privilegio,
                         'msg' => 'Usuário autenticado com sucesso!'
                     ]);
 

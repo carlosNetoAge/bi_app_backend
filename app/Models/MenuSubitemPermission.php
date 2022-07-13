@@ -12,7 +12,7 @@ class MenuSubitemPermission extends Model
     use SoftDeletes;
 
     protected $table = "menu_subitens_permissoes";
-    protected $fillable = ['subitem_id', 'user_id'];
+    protected $fillable = ['item_id', 'subitem_id', 'user_id'];
 
     public function subItems()
     {

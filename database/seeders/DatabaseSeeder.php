@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
 
         DB::table('setores')->insert([
-            'setor' => "Diretoria",
+            'setor' => "Padrão",
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -89,9 +89,10 @@ class DatabaseSeeder extends Seeder
             'sobrenome' => 'Neto',
             'email' => 'a@a',
             'setor_id' => 1,
-            'privilegio' => 1
+            'privilegio' => 1,
+            'registrado_em' => "22/07/2022"
         ]);
 
-        User::factory(100)->create();
+        //User::factory(100)->create();
     }
 }

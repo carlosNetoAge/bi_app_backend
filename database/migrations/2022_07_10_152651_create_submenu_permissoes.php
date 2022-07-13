@@ -21,9 +21,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('item_id')->references('id')->on('menu_itens')->onDelete('cascade');
-            $table->foreign('subitem_id')->references('id')->on('menu_subitens')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('menu_itens');
+            $table->foreign('subitem_id')->references('id')->on('menu_subitens');
+            $table->foreign('user_id')->references('id')->on('usuarios');
         });
     }
 
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submenu_permissoes');
+        Schema::dropIfExists('menu_subitens_permissoes');
     }
 };
