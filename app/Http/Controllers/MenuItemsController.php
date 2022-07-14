@@ -33,7 +33,15 @@ class MenuItemsController extends Controller
 
     public function store(Request $request)
     {
-        //
+
+        $menu = MenuItem::create($request->all());
+
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Menu criado com SUCESSO!',
+            'menu_id' => $menu->id
+        ]);
     }
 
 

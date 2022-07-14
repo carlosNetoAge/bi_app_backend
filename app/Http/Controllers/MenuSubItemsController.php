@@ -26,7 +26,14 @@ class MenuSubItemsController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $subitem = MenuSubItem::create($request->all());
+
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Dashboard criado com SUCESSO!',
+            'item_id' => $subitem->item_id
+        ]);
     }
 
 

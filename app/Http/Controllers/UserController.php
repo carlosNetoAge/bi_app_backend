@@ -10,7 +10,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::select('id', 'ativo', 'nome', 'sobrenome', 'email')->where('privilegio', 0)->get();
+        $users = User::select('id', 'ativo', 'nome', 'sobrenome', 'email')->get();
 
         return response($users);
     }
