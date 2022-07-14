@@ -129,13 +129,17 @@ class AuthenticController extends Controller
 //            echo $error->getDiagnosticMessage();
 //        }
 
-                    return response()->json([
-                        'token' => 'uiahuaisuhashahs',
-                        'user_id' => 1,
-                        'email' => 'a@a',
-                        'privilege' => 1,
-                        'msg' => 'Usuário autenticado com sucesso!'
-                    ]);
+                    if($request->input('username') === 'administrador' && $request->input('password') === 'T2EFTuyBC') {
+
+                        return response()->json([
+                            'token' => 'uiahuaisuhashahs',
+                            'user_id' => 1,
+                            'email' => 'a@a',
+                            'privilege' => 1,
+                            'msg' => 'Usuário autenticado com sucesso!'
+                        ]);
+
+                    }
     }
 
 }
