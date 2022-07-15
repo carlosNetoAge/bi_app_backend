@@ -136,7 +136,7 @@ class AuthenticController extends Controller
 //
                         if(isset($user->email)) {
 
-                            if($user->ativo === 1) {
+                            if ($user->ativo === 1) {
                                 $user->update([
                                     'personal_token' => Hash::make(Str::random(40))
                                 ]);
@@ -151,19 +151,20 @@ class AuthenticController extends Controller
                             } else {
 
                                 return response()->json([
-                                   'status' => false,
-                                   'msg' => 'Usuário inativo! Contacte o setor responsável'
+                                    'status' => false,
+                                    'msg' => 'Usuário inativo! Contacte o setor responsável'
                                 ]);
 
                             }
+                        }
 
-                        return response()->json([
-                            'token' => 'uiahuaisuhashahs',
-                            'user_id' => 1,
-                            'email' => 'a@a',
-                            'privilege' => 1,
-                            'msg' => 'Usuário autenticado com sucesso!'
-                        ]);
+//                        return response()->json([
+//                            'token' => 'uiahuaisuhashahs',
+//                            'user_id' => 1,
+//                            'email' => 'a@a',
+//                            'privilege' => 1,
+//                            'msg' => 'Usuário autenticado com sucesso!'
+//                        ]);
 
                     }
     }
