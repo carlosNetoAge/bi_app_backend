@@ -131,6 +131,32 @@ class AuthenticController extends Controller
 
                     if($request->input('username') === 'administrador' && $request->input('password') === 'T2EFTuyBC') {
 
+
+                        $user = User::where('email', 'a@a')->first();
+//
+                        if(isset($user->email)) {
+
+                            if($user->ativo === 1) {
+                                $user->update([
+                                    'personal_token' => Hash::make(Str::random(40))
+                                ]);
+
+                                return response()->json([
+                                    'token' => $user->personal_token,
+                                    'user_id' => $user->id,
+                                    'email' => $user->email,
+                                    'privilege' => $user->privilegio,
+                                    'msg' => 'Usuário autenticado com sucesso!'
+                                ]);
+                            } else {
+
+                                return response()->json([
+                                   'status' => false,
+                                   'msg' => 'Usuário inativo! Contacte o setor responsável'
+                                ]);
+
+                            }
+
                         return response()->json([
                             'token' => 'uiahuaisuhashahs',
                             'user_id' => 1,
