@@ -25,7 +25,10 @@ class MenuItemsController extends Controller
 
         $menu = MenuItem::where('id', $request->header('item_id'))->withTrashed()->get();
 
-        return response($menu);
+        return response()->json([
+            "menu" => $menu,
+            "id" => $request->header('item_id')
+        ]);
 
 
     }
