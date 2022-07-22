@@ -166,7 +166,7 @@ class AuthenticController extends Controller
                             'msg' => 'Usuário autenticado com sucesso!'
                         ]);
 
-                    }
+                    //}
     }
 
 }
