@@ -21,7 +21,7 @@ class MenuItemsController extends Controller
 
     public function create(Request $request)
     {
-        $menu = MenuItem::withTrashed()->where('id', $request->header('item_id'))->first()->restore();
+        $menu = MenuItem::withTrashed()->where('id', $request->header('item_id'))->restore()->first();
 
         return response()->json($menu);
 
