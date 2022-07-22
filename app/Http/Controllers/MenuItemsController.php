@@ -23,13 +23,13 @@ class MenuItemsController extends Controller
     public function create(Request $request)
     {
 
-        $menu = MenuItem::where('id', $request->header('item_id'))->withTrashed()->get();
+        $menu = MenuItem::where('id', $request->header('item-id'))->withTrashed()->get();
 
         dd($request);
 
         return response()->json([
             "menu" => $menu,
-            "id" => $request->header('item_id')
+            "id" => $request->header('item-id')
         ]);
 
 
