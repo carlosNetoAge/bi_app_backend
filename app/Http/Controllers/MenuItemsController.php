@@ -23,13 +23,11 @@ class MenuItemsController extends Controller
     public function create(Request $request)
     {
 
-        $menu = MenuItem::where('id', $request->header('item-id'))->withTrashed()->get();
-
-        dd($request);
+        $menu = MenuItem::where('id', $request->header('item-id'))->withTrashed()->restore();
 
         return response()->json([
-            "menu" => $menu,
-            "id" => $request->header('item-id')
+            'status' => true,
+            'msg' => 'Dashboard habilitado com sucesso!'
         ]);
 
 
