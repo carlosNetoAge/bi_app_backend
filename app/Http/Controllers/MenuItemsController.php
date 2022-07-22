@@ -23,7 +23,7 @@ class MenuItemsController extends Controller
     {
         $menu = MenuItem::withTrashed()->where('id', $request->header('item_id'));
 
-        $menu->restore();
+        $menu = $menu->restore();
 
         return response()->json($menu);
 
