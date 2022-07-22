@@ -15,23 +15,26 @@ class MenuItemsController extends Controller
         $menus = MenuItem::select('id', 'item', 'deleted_at')->withTrashed()->get();
 
         return response($menus);
+
     }
 
 
 
     public function create(Request $request)
     {
-        $menu = MenuItem::withTrashed()->where('id', $request->header('item_id'))->first();
 
-        $menu = $menu->update(['deleted_at' => null]);
+        $menu = MenuItem::where('id', $request->header('item_id'))->withTrashed()->get();
 
-        return response()->json($menu);
+        if(sizeof($menu)) {
 
-        return response()->json([
-            'status' => true,
-            'msg' => 'Dashboard habilitado com sucesso!'
-        ]);
+            $menu = MenuItem::onlyTrashed()->where('id', $request->header('item_id'))->restore();
 
+            return response()->json([
+                'status' => true,
+                'msg' => 'Dashboard habilitado com sucesso!'
+            ]);
+
+        }
     }
 
 
