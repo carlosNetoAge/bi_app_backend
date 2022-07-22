@@ -25,16 +25,9 @@ class MenuItemsController extends Controller
 
         $menu = MenuItem::where('id', $request->header('item_id'))->withTrashed()->get();
 
-        if(sizeof($menu)) {
+        return response($menu);
 
-            $menu = MenuItem::onlyTrashed()->where('id', $request->header('item_id'))->restore();
 
-            return response()->json([
-                'status' => true,
-                'msg' => 'Dashboard habilitado com sucesso!'
-            ]);
-
-        }
     }
 
 
