@@ -28,8 +28,6 @@ Route::middleware(\App\Http\Middleware\VerifyToken::class)->prefix('')->group(fu
     Route::post('sub_menu/iframe', [\App\Http\Controllers\MenuSubItemsController::class, 'update_iframe']);
 
     Route::prefix('allowed')->group(function() {
-        Route::get('list_menu', [\App\Http\Controllers\MenuAllowedController::class, 'list_menu']);
-        Route::get('list_submenu', [\App\Http\Controllers\MenuAllowedController::class, 'list_subMenu']);
         Route::get('menu_general', [\App\Http\Controllers\MenuAllowedController::class, 'menu_general']);
         Route::get('menu_submenu_general', [\App\Http\Controllers\MenuAllowedController::class, 'menu_submenu_general']);
     });
@@ -45,3 +43,5 @@ Route::middleware(\App\Http\Middleware\VerifyToken::class)->prefix('')->group(fu
 
 });
 
+Route::get('allowed/list_submenu', [\App\Http\Controllers\MenuAllowedController::class, 'list_subMenu']);
+Route::get('allowed/list_menu', [\App\Http\Controllers\MenuAllowedController::class, 'list_menu']);
